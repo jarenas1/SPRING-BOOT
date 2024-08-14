@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e81c165-cc5f-4fee-bf66-ab3f1f9b3fbc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../gh_2.54.0_windows_amd64.msi" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/helloWorld.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/helloWorld.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helloWorld/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/helloWorld/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/helloWorld/src/main/java/com/riwi/helloWorld/HelloWorldApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/helloWorld/src/main/java/com/riwi/helloWorld/HelloWorldApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
