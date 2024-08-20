@@ -1,0 +1,293 @@
+STARTER:
+
+es un paquete de dependencias, es decir una dependencia que contiene otras dependencias, entonces podríamos instalar la dependencia 1,2,3 o instalar la dependencia 4, que contiene las dependencias 1,2,3.
+
+-----------------------------------------------------------------------------------------------------------------------
+
+ANOTACION:
+
+se usan para proporcionarle información al programa(Darle comportamiento a las cosas), e inician por un @, por ejemplo el @override, que indica que es un método que se esta sobreescribiendo.
+
+En spring boot tenemos principalmente @SpringBootAplication, que es la que indica donde se va a correr el programa, por asi decirlo el main, de esta salen:
+
+Aca tambien se trabaja con una especie de MVC(capas), por ende cada cosa tiene su anotacion, por ejemplo las entidades tiene el @Entity.
+
+@EnableAutoConfiguration: Se encarga de buscar a todas las entidades con ka Anotacion @Entity
+
+@ComponentScan:  Se encarga de revisar las anotaciones de @Stereotipe, las cuales son las otras capas del proyecto, como vista, respository, etc
+
+@SpringBootConfiguration: Define el fichero de configuracion y define los beans que se van a usar en la aplicacion, si los beans no estan registrados no va a funcionar.
+
+Por ende al llamar el @SpringBootAplication estamos llamando a los otros 3
+
+
+Otras anotaciones
+
+@RestController
+
+Descripción: Indica que una clase es un controlador de REST, lo que significa que manejará las solicitudes HTTP y retornará respuestas directamente en el formato JSON/XML.
+Uso: Se coloca en la clase que maneja las solicitudes HTTP REST.
+
+
+@RequestMapping
+
+Descripción: Se usa para mapear solicitudes web a métodos de un controlador. Puede especificar la ruta y el método HTTP (GET, POST, etc.).
+Uso: Se coloca en métodos dentro de un controlador.
+
+
+@Autowired
+
+Descripción: Permite la inyección automática de dependencias en Spring. Se usa para inyectar beans en componentes de Spring.
+Uso: Se coloca en campos, constructores o métodos.
+
+
+@Service
+
+Descripción: Indica que una clase es un servicio de negocio en la capa de servicio. Es una especialización de la anotación @Component.
+Uso: Se coloca en la clase de servicio.
+
+
+@Repository
+
+Descripción: Se utiliza para marcar una clase como un repositorio (DAO) en la capa de persistencia. Es una especialización de @Component que maneja excepciones relacionadas con la base de datos.
+Uso: Se coloca en la clase que maneja el acceso a datos.
+
+
+@Entity
+
+Descripción: Marca una clase como una entidad JPA (Java Persistence API) que será mapeada a una tabla en la base de datos.
+Uso: Se coloca en la clase de modelo.
+
+
+
+@Table
+
+Descripción: Especifica el nombre de la tabla en la base de datos que se asocia con una entidad JPA.
+Uso: Se coloca en la clase de entidad.
+
+
+@Transactional
+
+Descripción: Se utiliza para definir los límites de una transacción. Puede ser aplicado a métodos o clases para asegurar que las operaciones de base de datos se manejen en una única transacción.
+Uso: Se coloca en métodos o clases que deben ejecutarse dentro de una transacción.
+
+
+
+@Value
+
+Descripción: Permite inyectar valores de propiedades externas (como variables de entorno o archivos de configuración) en campos de una clase.
+Uso: Se coloca en campos para inyectar valores.
+
+-----------------------------------------------------------------------------------------------------------------------
+
+
+
+THYMELEAF: este es un HTML dinamico que se crea desde el servidor, nos permite modificar el html dependiendo de prametros en funciones entre otra cosa, no consume apis si no que saca la información directamente de springboot, para esto se debe añadir en la parte de resources.staic el archivo inicial de html
+
+EJEMPLO EN tymeleaf1 
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+CREAR PROYECTOS SPRINGBOOT: 
+
+entramos a la pagina de spring inizializer, seleccionamos lo que necesitamos, una version que no sea SNAPSHOT, seleccionamos jar y añadimos la dependencia spring web
+
+Una vez creado el proyecto comenzamos a dar las anotaciones, por medio de @controller le decimos que la clase tiene un HTML asignado, @RequestMapping("algo"), lo que va a indicar "/algo", es que debemos acceder a este por medio del localhost para poder acceder a los metodos creados, ej localhost:8080/algo/...  Una vez deseemos crear el metodo de lo que va a hacer esa peticion, primero ponemos @GetMapping("/direccion"), donde direccion es la direccion del locolahost que va a tener ese metodo, es decir donde tenemos que acceder para obtener lo que retorna el metodo, por lo que si creamos 2 metodos debemos darles 2 direcciones diferentes y el localhost va a devolver algo dependiendo de la direccion usada
+
+EJEMPLO EN EL PROYECTO HolaMundo
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+MVC EN SPRING BOOT (modelo,vista,controlador)
+
+SpringMVC hace parte del STARTER SpringWeb
+
+-El usuario le hace una solicitud al controlador
+-el controlador se comunica con el modelo
+el modelo se comunica con la base de datos y trae las cosas(en el modelo esta la logica del negocio)
+-cuando el modelo recibe los datos de la base de datos, los procesa y se los envia al controlador
+-el controlador envia los datos a la vista
+-la vista muestra datos al usuario
+
+
+Los metodos del controlador tienen una notacion que los identifica, esta es @Controller
+
+los metodos de la logica del negocio (model) se identifican con la notacion @service
+
+La capa de acceso a datos, es decir lo que tiene acceso a la base de datos y tambien tienen las oeperaciones basicas del sistmea, se identifica con @Repository
+
+
+
+
+
+-------------------------------------------------------------------------------
+
+
+ESTEREOTIPOS
+
+en esto tenemos la anotacion @component, la cual nos sirve para indicar a springboot que va a detectar beans, o que esa clase tiene cierta funcionalidad en el proyecto, si la clase no tiene esto no se podra usar, de esta anotacion salen 3 anotaciones muy importnes, @Repository, @Controller, @Service, lo que funciona para lo mismo pero la diferencia es que le da mas legibilidad al codigo
+
+Básicamente los estereotipos son BEANS, los cuales se indican a springboot para que los añada al contenedor de spring y nos permita usarlo, por eso es importante usar las anotaciones 
+
+
+
+
+----------------------------------------------------------------------------------------------
+
+
+BEANS
+
+En Spring Boot, un bean es un objeto que es gestionado por el contenedor de Spring. Los beans son componentes clave en el framework Spring y son utilizados para realizar tareas específicas en la aplicación. Aquí están algunos conceptos clave sobre los beans en Spring Boot:
+
+Definición y Configuración:
+
+Un bean es un objeto que Spring crea, configura y gestiona. Puedes definir un bean usando la anotación @Component, @Service, @Repository, o @Controller, dependiendo del tipo de bean y su rol en la aplicación.
+También puedes definir beans en una clase de configuración utilizando la anotación @Configuration y el método @Bean. Por ejemplo:
+
+@Configuration
+public class AppConfig {
+    @Bean
+    public MyService myService() {
+        return new MyService();
+    }
+}
+
+Ciclo de Vida de los Beans:
+
+Spring maneja el ciclo de vida de los beans, desde su creación hasta su destrucción. Puedes definir métodos para ejecutar acciones antes de que el bean sea destruido usando la anotación @PreDestroy, y antes de que el bean esté listo para su uso usando @PostConstruct.
+Scope de los Beans:
+
+Los beans en Spring pueden tener diferentes ámbitos (scopes), como singleton (por defecto), prototype, request, session, entre otros. El ámbito singleton asegura que solo haya una instancia del bean en todo el contexto de la aplicación, mientras que prototype crea una nueva instancia cada vez que se solicita.
+Configuración en el Contexto de Aplicación:
+
+Los beans se registran en el contexto de la aplicación de Spring, que es el contenedor que administra su ciclo de vida y dependencias. Este contexto se crea al inicio de la aplicación y gestiona todos los beans definidos.
+En resumen, los beans en Spring Boot son objetos que forman la columna vertebral de una aplicación Spring, facilitando la gestión y la inyección de dependencias de manera eficiente y organizada.
+
+
+
+---------------------------------------------------------------------------------------------+
+
+METODOS HTTP
+
+Se refiere a los métodos definidos en los controladores (EndPoints) por los que podemos realizar peticiones y coordinan la lógica del negocio, los mas usados son:
+
+@RequestMapping
+@GetMapping(Lectura, GET)
+@PostMapping(Crear, PUT)
+@DeleteMapping(Eliminar, DELETE)
+@PutMapping(Editar, PUT)
+
+
+------------------------------------------------------------------------------------------
+
+INYECCION DE DEPENDENCIAS
+
+Es un principio que describe técnicas a disminuir el acoplamiento entre componentes, es como una especie de herencia entre clases en lo que podemos ver como inyección de dependencias el hecho de heredar cosas de otras clases(depender de otras clases) para poder funcionar, para poder hacer eso SE DEBEN USAR LAS NOTACIONES DE SERVICE CONTROLER...
+
+Para poder realizar la inyección, tenemos el @Autowired, que indica que se están inyectando dependencias a esa clase.
+
+Consiste en tener ciertas clases, las cuales van a tener ciertos métodos, vamos a tener una clase principal que es a la que se le van a inyectar las dependencias.
+
+Entonces en la clase principal vamos a instanciar las clases de dependencias y por medio de las instancias vamos a acceder a los métodos de las clases de las dependencias, esto se hace con el fin de separar las responsabilidades y tener un código mas limpio y ordenado
+
+
+
+EJEMPLO:
+ @Service
+public class OrderService {
+    private final OrderRepository orderRepository;
+
+    @Autowired
+    public OrderService(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
+}
+
+
+
+------------------------------------------------------------------------------------------------
+
+ESPECIFICACION: QUE SE VA A HACER (JPA)
+
+IMPLEMENTACION COMO SE VA A HACER (ORM con HIBERNATE)
+
+JPA
+
+JPA es una especificación para el mapeo objeto-relacional (ORM) en Java, y Spring Boot simplifica su uso a través de Spring Data JPA.
+
+Básicamente en JPA por medio de ORM, como hibernate vamos a tomar las entidades de la base de datos y a replicarlas exactamente en java y viceversa
+
+Este define entidades, relaciones y comportamientos
+
+
+------------------------------------------------------------------------------------------------------
+
+ORM: 
+
+Es una tecina que mapea objetos en lenguajes orientados a poo, es decir que nos permite trabajar con la base de datos usando objetos y métodos en lugar de escribir consultas sql
+
+La ventaja de esto es que ya no tendríamos que crear tablas en una base de datos, si no que por medio de entidades y anotaciones podemos hacer que se cree la tabla
+
+Para realizar esto exixtsen varias implementaciones, por ejemplo hibernate, jdbc, SpringDataJpa
+
+
+---------------------------------------------------------------------------------------------------
+
+
+HIBERNATE:
+
+PERMITE TRABAJAR CON OBJETOS EN VEZ DE TRABAJAR CON SQL, ESTE ES LA IMPLEMENTACION DE JPA, ES UN ORM
+
+
+-----------------------------------------------------------------------------------------------------
+
+SPRING DATA:
+
+Es un proyecto de Spring que permite trabajar mas fácil la persistencia
+
+
+---------------------------------------------------------------------------------------------------
+
+SPRING DATA JPA, es lo mismo que spring data, y se centra en facilizar el uso de jpa, dándonos operaciones crud pre creadas
+
+
+
+
+
+
+
+
+
+
+en springboot todo va ordenado por paquetes
+
+MY FIRST APLICATION:
+
+Dependencias usadas:
+
+LOMBOK: facilita creación de getters and setters
+
+Spring Web
+
+Sprig Data JPA
+
+
+1. Creamos el diseño de la base de datos
+2. Configurar el properties(propiedades de la db)
+3. Llevamos el diseño a código
+4. corremos el proyecto para que se creen las tablas en la base de datos
+
+
+
+
+
+
+
